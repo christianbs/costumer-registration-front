@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Customer } from 'src/app/shared/models/customer';
+import { Risk } from 'src/app/shared/enums/risk.enum';
+import { CustomerService } from 'src/app/shared/services/customer.service';
 
 @Component({
   selector: 'app-form',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormComponent implements OnInit {
 
-  constructor() { }
+  private Risk = Risk;
+  private customer: Customer;
+
+  constructor(
+    private customerService: CustomerService
+  ) { }
 
   ngOnInit() {
+    this.customer = new Customer('', null, null);
+  }
+
+  onSubmit() {
+    this.customerService.save(this.customer);
   }
 
 }

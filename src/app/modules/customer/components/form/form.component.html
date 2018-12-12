@@ -1,3 +1,22 @@
-<p>
-  form works!
-</p>
+<form (submit)="onSubmit()">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Name" [(ngModel)]="customer.name" name="name" id="name" required minlength="1">
+  </mat-form-field>
+  <br>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Credit Limit" [(ngModel)]="customer.creditLimit" name="creditLimit" id="creditLimit"
+      required>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <mat-select placeholder="Risk" [(ngModel)]="customer.risk" name="risk" id="risk" required>
+      <mat-option *ngFor="let risk of Risk.values()" [value]="risk">
+        {{risk}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <br>
+  <button mat-raised-button color="primary" type="submit">Save</button>
+  <br>
+  <br>
+</form>

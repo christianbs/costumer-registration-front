@@ -4,6 +4,7 @@ export class Customer {
     constructor(
         public name: string,
         public creditLimit: number,
-        public risk: Risk
+        public risk: Risk,
+        public interestRate: number
     ) { }
 }

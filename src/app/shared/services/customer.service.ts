@@ -7,16 +7,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CustomerService {
 
+  private url = '/local/customer-registration/customer';
+
   constructor(
     private httpClient: HttpClient
   ) { }
 
   save(customer: Customer) {
-    alert(JSON.stringify(customer));
+    return this.httpClient.post(this.url, customer);
   }
 
   findAll() {
     const url = '';
-    return this.httpClient.get(url);
+    return this.httpClient.get(this.url);
   }
 }

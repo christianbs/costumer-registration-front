@@ -22,7 +22,7 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.customerService.save(this.customer);
+    this.customerService.save(this.customer).subscribe(data => alert('topper'));
   }
 
 }

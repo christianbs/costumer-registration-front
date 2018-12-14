@@ -18,7 +18,10 @@ export class CustomerService {
   }
 
   findAll() {
-    const url = '';
     return this.httpClient.get(this.url);
+  }
+
+  delete(id: string) {
+    return this.httpClient.delete(this.url + '/' + id);
   }
 }

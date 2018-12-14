@@ -1,6 +1,6 @@
-<form (submit)="onSubmit()">
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
   <mat-form-field class="example-full-width">
-    <input matInput placeholder="Name" [(ngModel)]="customer.name" name="name" id="name" required minlength="1">
+    <input matInput placeholder="Name" [(ngModel)]="customer.name" name="name" id="name" required minlength="2">
   </mat-form-field>
   <br>
   <mat-form-field class="example-full-width">

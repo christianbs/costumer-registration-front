@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ViewChild } from '@angular/core';
 import { Customer } from 'src/app/shared/models/customer';
 import { Risk } from 'src/app/shared/enums/risk.enum';
 import { CustomerService } from 'src/app/shared/services/customer.service';
+import { NgForm } from '@angular/forms';
+import { format } from 'url';
 
 @Component({
   selector: 'app-form',
@@ -10,6 +12,8 @@ import { CustomerService } from 'src/app/shared/services/customer.service';
 })
 export class FormComponent implements OnInit {
 
+  @ViewChild(NgForm) customerForm = NgForm;
+  @Output() eventUpdateTable = new EventEmitter();
   private Risk = Risk;
   private customer: Customer;
 
@@ -18,11 +22,33 @@ export class FormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.customer = new Customer('', null, null, null);
+    this.newCustomer();
   }
 
-  onSubmit() {
-    this.customerService.save(this.customer).subscribe(data => alert('topper'));
+  onSubmit(form: NgForm) {
+    if (form.valid) {
+      this.customerService.save(this.customer).subscribe(data => {
+        this.newCustomer();
+        this.updateTable();
+        this.resetValidation(form);
+      });
+    }
+  }
+
+  newCustomer() {
+    this.customer = new Customer(null, '', null, null, null);
+  }
+
+  updateTable() {
+    this.eventUpdateTable.next();
+  }
+
+  resetValidation(form: NgForm) {
+    form.resetForm();
+  }
+
+  editCustomer(customer: Customer) {
+    this.customer = customer;
   }
 
 }

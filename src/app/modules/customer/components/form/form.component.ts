@@ -3,7 +3,6 @@ import { Customer } from 'src/app/shared/models/customer';
 import { Risk } from 'src/app/shared/enums/risk.enum';
 import { CustomerService } from 'src/app/shared/services/customer.service';
 import { NgForm } from '@angular/forms';
-import { format } from 'url';
 
 @Component({
   selector: 'app-form',
